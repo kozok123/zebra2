@@ -1,5 +1,7 @@
 package com.example.zebra2;
 
+import static android.view.View.INVISIBLE;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +44,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         aktualne++;
+                        if(aktualne == pytania.size()) {
+                            buttonDalej.setVisibility(INVISIBLE);
+                        }else {
+                            wypiszPytanie(aktualne);
+                        }
                         wypiszPytanie(aktualne);
                     }
                 }
