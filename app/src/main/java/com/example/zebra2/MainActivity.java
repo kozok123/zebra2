@@ -1,6 +1,10 @@
 package com.example.zebra2;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +12,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class MainActivity extends AppCompatActivity {
+    private ArrayList<pytanie> pytania;
+    private TextView textView;
+    private ImageView imageView;
+    private Button buttonTak, buttonNie, buttonDalej;
+    private int aktualne =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +30,32 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        dodajPytanie();
+        textView = findViewById(R.id.textView2);
+        buttonTak = findViewById(R.id.button);
+        buttonNie = findViewById(R.id.button2);
+        buttonDalej = findViewById(R.id.button4);
+        imageView = findViewById(R.id.imageView);
+        wypiszPytanie(0);
+        buttonDalej.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        aktualne++;
+                        wypiszPytanie(aktualne);
+                    }
+                }
+        );
+    }
+    private void wypiszPytanie(int ktore) {
+        pytanie pytanie = pytania.get(ktore);
+        textView.setText(pytanie.getTrescPytania());
+        imageView.setImageResource((int)(pytanie.getIdZdjecia()));
+    }
+    private void dodajPytanie() {
+        pytania = new ArrayList<>();
+        pytania.add(new pytanie(R.drawable.tygrys, "czy lew jest królem zwierząt?", true));
+        pytania.add(new pytanie(R.drawable.zyrafa, "Czy żyrafa śpi zawsze na stojąco?", false));
+        pytania.add(new pytanie(R.drawable.okapi, "Czy okapi było znane w 17 wieku?", false));
     }
 }

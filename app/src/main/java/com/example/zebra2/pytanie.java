@@ -7,11 +7,11 @@ public class pytanie {
 
     private boolean czyPoprawnie;
 
-    public pytanie(long idZdjecia, String trescPytania, boolean poprawnaodpowiedz, boolean czyPoprawnie) {
+    public pytanie(long idZdjecia, String trescPytania, boolean poprawnaodpowiedz) {
         this.idZdjecia = idZdjecia;
         this.trescPytania = trescPytania;
         this.poprawnaodpowiedz = poprawnaodpowiedz;
-        this.czyPoprawnie = czyPoprawnie;
+        this.czyPoprawnie = false;
     }
 
     public long getIdZdjecia() {
