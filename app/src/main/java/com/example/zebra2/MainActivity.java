@@ -50,9 +50,30 @@ public class MainActivity extends AppCompatActivity {
                             wypiszPytanie(aktualne);
                         }
                         wypiszPytanie(aktualne);
+
+                        buttonTak.setOnClickListener(
+                                new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        sprawdzOpdowiedz(true);
+                                    }
+                                }
+
+                        );
                     }
                 }
         );
+    }
+    private void sprawdzOpdowiedz(boolean odp){
+        if(pytania.get(aktualne).isPoprawnaodpowiedz() == odp) {
+            pytania .get(aktualne).setCzyPoprawnie(true);
+        }
+        else {
+
+            wypiszPytanie(aktualne);
+        }
+        wypiszPytanie(aktualne);
+
     }
     private void wypiszPytanie(int ktore) {
         pytanie pytanie = pytania.get(ktore);
